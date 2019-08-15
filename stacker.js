@@ -4,8 +4,10 @@ var Ypos = 9;
 var ExtraRed = 2;
 var GoingRight = 1;
 var InGame = 1;
+var LvlLength = 15;
 var Speed = 100;
 var ScrollingPoint = 5;
+var ScroolCount = 0;
 tableCreate();
 Board = ArrayCreate();
 
@@ -38,6 +40,8 @@ function ScroolingUpdate(){
     
     if(Ypos==ScrollingPoint){
         Ypos++;
+        ScroolCount++;
+        console.log("scrool count :"+ScroolCount)
         //change Board value
         var BoardSave = Board;
         for (var i = ScrollingPoint+1; i < 10; i++) {
@@ -132,7 +136,10 @@ function LaunchRed(){
     document.onkeydown = function(){
         clearInterval(Interval_Wtm);
         clearInterval(Interval_Ud);
-        ScroolingUpdate();
+        if(ScroolCount != (LvlLength-10)){
+            ScroolingUpdate();
+            console.log(LvlLength-10)
+        }
         if(Ypos>0){
             Ypos-=1;
             if(Ypos == 7 && ExtraRed == 2 ||Ypos == 5 && ExtraRed == 1 ){
@@ -145,6 +152,6 @@ function LaunchRed(){
 }
 
 //main
-LaunchRed(100);
+LaunchRed();
 
 
