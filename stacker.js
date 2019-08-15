@@ -8,6 +8,7 @@ var LvlLength = 15;//lvl length (no limit) automatically adapt
 var Speed = 100;
 var ScrollingPoint = 5;// where we start scrolling
 var ScroolCount = 0; //number of times we scrolled 
+var AntiSpam = 0;
 tableCreate();
 Board = ArrayCreate(); //init our board
 
@@ -131,20 +132,31 @@ function LaunchRed(){
     var Interval_Wtm = setInterval(function(){WhereToMove();}, Speed);
     var Interval_Ud = setInterval(function(){UpdateDisplay();}, Speed);
     document.onkeydown = function(){
-        clearInterval(Interval_Wtm);
-        clearInterval(Interval_Ud);
-        if(ScroolCount != (LvlLength-10)){///if we need to scrool again
-            ScroolingUpdate();
-            console.log(LvlLength-10)
-        }
-        if(Ypos>0){
-            Ypos-=1;
-            if(Ypos == 7 && ExtraRed == 2 ||Ypos == 5 && ExtraRed == 1 ){
-                ExtraRed -= 1;
+        if(AntiSpam == 0){
+            //clear interval
+            clearInterval(Interval_Wtm);
+            clearInterval(Interval_Ud);
+
+            if(ScroolCount != (LvlLength-10)){///if we need to scrool again
+                ScroolingUpdate();
+                console.log(LvlLength-10)
+                }
+
+            if(Ypos>0){//Stop the game when we are at the top of the board
+
+                Ypos-=1;//up every movement
+
+                if(Ypos == 7 && ExtraRed == 2 ||Ypos == 5 && ExtraRed == 1 ){
+                    ExtraRed -= 1; //when progress in the game even without failure you will lost ExtraRed
+                }
+                Speed*=0.95;
+                AntiSpam=1;//turn AntiSpam on after a keydown
+                LaunchRed();
             }
-            Speed*=0.95;
-            LaunchRed();
         }
+    }
+    document.onkeyup = function(){//turn off AntiSpam when the key is up
+        AntiSpam=0;
     }
 }
 
