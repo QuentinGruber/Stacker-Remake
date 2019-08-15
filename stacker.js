@@ -1,15 +1,15 @@
 //init
 var Xpos = -1;
 var Ypos = 9;
-var ExtraRed = 2;
+var ExtraRed = 2;//extra red cube
 var GoingRight = 1;
-var InGame = 1;
-var LvlLength = 15;
+var InGame = 1;//unused
+var LvlLength = 15;//lvl length (no limit) automatically adapt
 var Speed = 100;
-var ScrollingPoint = 5;
-var ScroolCount = 0;
+var ScrollingPoint = 5;// where we start scrolling
+var ScroolCount = 0; //number of times we scrolled 
 tableCreate();
-Board = ArrayCreate();
+Board = ArrayCreate(); //init our board
 
 
 
@@ -34,6 +34,20 @@ function tableCreate(){
         }
     
     body.appendChild(tbl);
+}
+function ArrayCreate(){//create array for logic of the game
+    var row = [];
+    var column = [];
+    
+    for (var i = 0; i < 10; i++) {
+        column = [];
+        for (var j = 0; j < 7; j++) {
+        column.push(0);
+        }
+        row.push(column);
+    }
+    console.log(row)
+    return row;
 }
 
 function ScroolingUpdate(){
@@ -66,22 +80,20 @@ function ScroolingUpdate(){
 
 }
 
-
-function ArrayCreate(){//create array for logic of the game
-    var row = [];
-    var column = [];
+function UpdateDisplay(){
     
-    for (var i = 0; i < 10; i++) {
-        column = [];
-        for (var j = 0; j < 7; j++) {
-        column.push(0);
+    for (var i = 0; i < 7; i++) {
+        if(Board[Ypos][i] ==1){
+            var Case = document.getElementById("c"+(i+1)+"r"+(Ypos+1));
+            Case.style.backgroundColor="red";
         }
-        row.push(column);
-    }
-    console.log(row)
-    return row;
-}
+        else{
+            var Case = document.getElementById("c"+(i+1)+"r"+(Ypos+1));
+            Case.style.backgroundColor="white";
 
+        }
+    }
+}
 
 function MoveRed(x){
     if(x==1){//if we go to right
@@ -115,28 +127,13 @@ function WhereToMove(){
     }
 }
 
-function UpdateDisplay(){
-    
-    for (var i = 0; i < 7; i++) {
-        if(Board[Ypos][i] ==1){
-            var Case = document.getElementById("c"+(i+1)+"r"+(Ypos+1));
-            Case.style.backgroundColor="red";
-        }
-        else{
-            var Case = document.getElementById("c"+(i+1)+"r"+(Ypos+1));
-            Case.style.backgroundColor="white";
-
-        }
-    }
-}
-
 function LaunchRed(){
     var Interval_Wtm = setInterval(function(){WhereToMove();}, Speed);
     var Interval_Ud = setInterval(function(){UpdateDisplay();}, Speed);
     document.onkeydown = function(){
         clearInterval(Interval_Wtm);
         clearInterval(Interval_Ud);
-        if(ScroolCount != (LvlLength-10)){
+        if(ScroolCount != (LvlLength-10)){///if we need to scrool again
             ScroolingUpdate();
             console.log(LvlLength-10)
         }
