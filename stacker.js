@@ -5,7 +5,7 @@ var ExtraRed = 2;
 var GoingRight = 1;
 var InGame = 1;
 var Speed = 100;
-var ScrollingPoint = 8;
+var ScrollingPoint = 5;
 tableCreate();
 Board = ArrayCreate();
 
@@ -37,38 +37,31 @@ function tableCreate(){
 function ScroolingUpdate(){
     
     if(Ypos==ScrollingPoint){
-        console.log("is scrooling");
         Ypos++;
-    //change Board value
-    for (var i = ScrollingPoint+1; i > 11; i++) {
-        for (var j = 0; j < 7; j++) {
-        
-            Board[i][j]=Board[i-1][j]
+        //change Board value
+        var BoardSave = Board;
+        for (var i = ScrollingPoint+1; i < 10; i++) {
+            for (var j = 0; j < 7; j++) {
+            
+                Board[i][j]=BoardSave[i-1][j]
+
+                //Update display
+                if(Board[i][j] == 1){
+                    var Case = document.getElementById("c"+(j+1)+"r"+(i+1));
+                    Case.style.backgroundColor="red";
+                }
+                else{
+                    var Case = document.getElementById("c"+(j+1)+"r"+(i+1));
+                    Case.style.backgroundColor="white";
+
+                }
+            }
         }
     }
-    console.log("have change board");
-    console.log(Board);
-    //Update display
-    for (var i = 0; i > 10; i++) {
-        console.log("Display line updated!");
-        for (var j = 0; j < 7; j++) {
-            console.log("Display line updated!");
-            if(Board[i][j] == 1){
-                var Case = document.getElementById("c"+(j+1)+"r"+(i+1));
-                Case.style.backgroundColor="red";
-            }
-            else{
-                var Case = document.getElementById("c"+(j+1)+"r"+(i+1));
-                Case.style.backgroundColor="white";
-
-            }
-    }
-    }
-    console.log("display updated");
     
 
 }
-}
+
 
 function ArrayCreate(){//create array for logic of the game
     var row = [];
@@ -142,7 +135,7 @@ function LaunchRed(){
         ScroolingUpdate();
         if(Ypos>0){
             Ypos-=1;
-            if(Ypos == 7 && ExtraRed == 2 ||Ypos == 5 && ExtraRed == 2 ){
+            if(Ypos == 7 && ExtraRed == 2 ||Ypos == 5 && ExtraRed == 1 ){
                 ExtraRed -= 1;
             }
             Speed*=0.95;
