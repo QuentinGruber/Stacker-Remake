@@ -4,11 +4,12 @@ var Ypos = 9;
 var ExtraRed = 2;//extra red cube
 var GoingRight = 1;
 var InGame = 1;//unused
-var LvlLength = 15;//lvl length (no limit) automatically adapt
-var Speed = 100;
+var LvlLength = 10;//lvl length (no limit) automatically adapt
+var Speed = 100; //initial speed
 var ScrollingPoint = 5;// where we start scrolling
 var ScroolCount = 0; //number of times we scrolled 
 var AntiSpam = 0;
+var CanLose = 0;
 tableCreate();
 Board = ArrayCreate(); //init our board
 
@@ -127,7 +128,30 @@ function WhereToMove(){
         MoveRed(0);
     }
 }
+function CheckPlacement(){
+    
+    for (var i = 0; i < 7; i++) {
+        if(Board[Ypos][i] == 1 && Board[Ypos+1][i] != 1){
+            var Case = document.getElementById("c"+(i+1)+"r"+(Ypos+1));
+            Case.style.backgroundColor="white";
+            ExtraRed -= 1 
+            if(ExtraRed<0){
+                Loose();
+            }
+        }
+    }
 
+}
+function Loose(){
+    alert('you loose!')
+    InGame = 0;
+    AntiSpam=0;
+}
+function Win(){
+    alert('you Win!')
+    InGame = 0;
+    AntiSpam=0;
+}
 function LaunchRed(){
     var Interval_Wtm = setInterval(function(){WhereToMove();}, Speed);
     var Interval_Ud = setInterval(function(){UpdateDisplay();}, Speed);
@@ -136,27 +160,36 @@ function LaunchRed(){
             //clear interval
             clearInterval(Interval_Wtm);
             clearInterval(Interval_Ud);
+            
+            if(CanLose){CheckPlacement();} //you can't loose at first stage
+            CanLose = 1;//player can loose after first step
 
-            if(ScroolCount != (LvlLength-10)){///if we need to scrool again
-                ScroolingUpdate();
-                console.log(LvlLength-10)
+             
+            Ypos-=1;//up every movement
+
+            if(Ypos<0 && InGame){//Stop the game when we are at the top of the board
+                Win();
+            }
+            if(InGame){//to stop the game when you lost
+                
+                if(ScroolCount != (LvlLength-10)){///if we need to scrool again
+                    ScroolingUpdate();
+                    console.log(LvlLength-10)
                 }
-
-            if(Ypos>0){//Stop the game when we are at the top of the board
-
-                Ypos-=1;//up every movement
 
                 if(Ypos == 7 && ExtraRed == 2 ||Ypos == 5 && ExtraRed == 1 ){
                     ExtraRed -= 1; //when progress in the game even without failure you will lost ExtraRed
                 }
-                Speed*=0.95;
-                AntiSpam=1;//turn AntiSpam on after a keydown
+
+                Speed*=0.95; // 5% speed +
+                AntiSpam=1;//turn AntiSpam on after a keydown while still in game
                 LaunchRed();
-            }
+            } 
+            
         }
     }
     document.onkeyup = function(){//turn off AntiSpam when the key is up
-        AntiSpam=0;
+        if(InGame){AntiSpam=0;} //only when in gamed
     }
 }
 
