@@ -1,0 +1,14 @@
+#Background1{
+    position: fixed;
+    height: 1080px;
+    width: 1920px;
+    margin: 0px;
+    padding: 0;
+
+}
+
+
+
+#Board{
+    position: fixed;
+}

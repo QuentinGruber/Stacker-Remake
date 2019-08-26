@@ -21,8 +21,9 @@ function tableCreate(){
         tbl  = document.createElement('table');
     tbl.id = "Board";
     tbl.style.width  = '35vw';
-    tbl.style.marginLeft = '30vw';
     tbl.style.height  = '35vw';
+    tbl.style.marginLeft = '30vw';
+    tbl.style.marginTop = '10vw';
     tbl.style.border = '1px solid black';
 
     for(var i = 0; i < 10; i++){ //create row
@@ -154,7 +155,7 @@ function Win(){
 }
 function LaunchRed(){
     var Interval_Wtm = setInterval(function(){WhereToMove();}, Speed);
-    var Interval_Ud = setInterval(function(){UpdateDisplay();}, Speed);
+    var Interval_Ud = setInterval(function(){UpdateDisplay();}, Speed/2);
     document.onkeydown = function(){
         if(AntiSpam == 0){
             //clear interval
