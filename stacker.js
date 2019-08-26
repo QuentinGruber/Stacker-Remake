@@ -4,7 +4,7 @@ var Ypos = 9;
 var ExtraRed = 2;//extra red cube
 var GoingRight = 1;
 var InGame = 1;//unused
-var LvlLength = 10;//lvl length (no limit) automatically adapt
+var LvlLength = 10;//lvl length (no limit) (min 10) automatically adapt
 var Speed = 100; //initial speed
 var ScrollingPoint = 5;// where we start scrolling
 var ScroolCount = 0; //number of times we scrolled 
@@ -138,6 +138,7 @@ function CheckPlacement(){
             ExtraRed -= 1 
             if(ExtraRed<0){
                 Loose();
+                Case.style.backgroundColor="red";//to let the case we miss on the board
             }
         }
     }
@@ -155,14 +156,14 @@ function Win(){
 }
 function LaunchRed(){
     var Interval_Wtm = setInterval(function(){WhereToMove();}, Speed);
-    var Interval_Ud = setInterval(function(){UpdateDisplay();}, Speed/2);
+    var Interval_Ud = setInterval(function(){UpdateDisplay();}, 1);//display updated every 1sec
     document.onkeydown = function(){
         if(AntiSpam == 0){
             //clear interval
             clearInterval(Interval_Wtm);
             clearInterval(Interval_Ud);
             
-            if(CanLose){CheckPlacement();} //you can't loose at first stage
+            if(CanLose && InGame){CheckPlacement();} //you can't loose at first stage
             CanLose = 1;//player can loose after first step
 
              
