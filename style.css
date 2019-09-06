@@ -12,3 +12,11 @@
 #Board{
     position: fixed;
 }
+
+#Playtime{
+    position: fixed;
+    margin-left: 95vw;
+    margin-top: 30vw;
+    color:purple;
+
+}
