@@ -12,3 +12,9 @@
 #Board{
     position: fixed;
 }
+
+#score{
+    position: fixed;
+    margin-left: 95vw;
+    color: red;
+}
