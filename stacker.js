@@ -10,6 +10,7 @@ var ScrollingPoint = 5;// where we start scrolling
 var ScroolCount = 0; //number of times we scrolled 
 var AntiSpam = 0;
 var CanLose = 0;
+var Score = 0;
 tableCreate();
 Board = ArrayCreate(); //init our board
 
@@ -142,7 +143,12 @@ function CheckPlacement(){
             }
         }
     }
-
+    if(InGame){
+        Score+=1;
+    }
+    var ScoreDisplay = document.getElementById("score");
+    ScoreDisplay.innerHTML="<h1>"+Score+"</h1>";
+    console.log("score:"+Score);
 }
 function Loose(){
     alert('you loose!')
