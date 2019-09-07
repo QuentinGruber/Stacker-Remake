@@ -4,7 +4,7 @@ var Ypos = 9;
 var ExtraRed = 2;//extra red cube
 var GoingRight = 1;
 var InGame = 1;//unused
-var LvlLength = 10;//lvl length (no limit) (min 10) automatically adapt
+var LvlLength = 15;//lvl length (no limit) (min 10) automatically adapt
 var Speed = 100; //initial speed
 var ScrollingPoint = 5;// where we start scrolling
 var ScroolCount = 0; //number of times we scrolled 
@@ -50,7 +50,6 @@ function ArrayCreate(){//create array for logic of the game
         }
         row.push(column);
     }
-    console.log(row)
     return row;
 }
 
@@ -59,7 +58,6 @@ function ScroolingUpdate(){
     if(Ypos==ScrollingPoint){
         Ypos++;
         ScroolCount++;
-        console.log("scrool count :"+ScroolCount)
         //change Board value
         var BoardSave = Board;
         for (var i = ScrollingPoint+1; i < 10; i++) {
@@ -101,23 +99,19 @@ function UpdateDisplay(){
 
 function MoveRed(x){
     if(x==1){//if we go to right
-        //console.log("go right");
         Board[Ypos][Xpos-ExtraRed]=0;
         Xpos+=1;
         Board[Ypos][Xpos]=1;
         if(Xpos-ExtraRed>=6){
             GoingRight=0;
         }
-       // console.log(Board);
 
     }
     else{
-        //console.log("go left");
         Board[Ypos][Xpos+ExtraRed]=0;
         Xpos-=1;
         Board[Ypos][Xpos]=1;
         if(Xpos+ExtraRed<=0){GoingRight=1;}
-        //console.log(Board);
     }
 
 }
@@ -148,7 +142,6 @@ function CheckPlacement(){
     }
     var ScoreDisplay = document.getElementById("score");
     ScoreDisplay.innerHTML="<h1>"+Score+"</h1>";
-    console.log("score:"+Score);
 }
 function Loose(){
     alert('you loose!')
@@ -182,7 +175,6 @@ function LaunchRed(){
                 
                 if(ScroolCount != (LvlLength-10)){///if we need to scrool again
                     ScroolingUpdate();
-                    console.log(LvlLength-10)
                 }
 
                 if(Ypos == 7 && ExtraRed == 2 ||Ypos == 5 && ExtraRed == 1 ){
