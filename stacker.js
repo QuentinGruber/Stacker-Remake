@@ -11,6 +11,7 @@ var ScroolCount = 0; //number of times we scrolled
 var AntiSpam = 0;
 var CanLose = 0;
 var Score = 0;
+var PlayTime = 20;
 tableCreate();
 Board = ArrayCreate(); //init our board
 
@@ -95,6 +96,8 @@ function UpdateDisplay(){
 
         }
     }
+
+
 }
 
 function MoveRed(x){
@@ -153,20 +156,37 @@ function Win(){
     InGame = 0;
     AntiSpam=0;
 }
+function TimeoutCountdown(){
+    console.log(PlayTime+"pt");
+    PlayTime -= 1;
+    var plt = document.getElementById("Playtime");
+    plt.innerHTML = "<p>"+PlayTime+"s"+"</p>";
+    if(PlayTime == 0){
+        Loose();
+    }
+
+}
 function LaunchRed(){
     var Interval_Wtm = setInterval(function(){WhereToMove();}, Speed);
-    var Interval_Ud = setInterval(function(){UpdateDisplay();}, 1);//display updated every 1sec
+    var Interval_Ud = setInterval(function(){UpdateDisplay();}, 1);//display updated every 1msec
+    var Interval_Tc = setInterval(function(){TimeoutCountdown();}, 1000); // -1 to PlayTime every 1 sec
     document.onkeydown = function(){
         if(AntiSpam == 0){
             //clear interval
             clearInterval(Interval_Wtm);
             clearInterval(Interval_Ud);
+            clearInterval(Interval_Tc);
+
             
             if(CanLose && InGame){CheckPlacement();} //you can't loose at first stage
             CanLose = 1;//player can loose after first step
 
              
             Ypos-=1;//up every movement
+
+            PlayTime = (21); //reset playtime
+
+            TimeoutCountdown(); // display playtime updated
 
             if(Ypos<0 && InGame){//Stop the game when we are at the top of the board
                 Win();
@@ -189,7 +209,7 @@ function LaunchRed(){
         }
     }
     document.onkeyup = function(){//turn off AntiSpam when the key is up
-        if(InGame){AntiSpam=0;} //only when in gamed
+        if(InGame){AntiSpam=0;} //only when in game
     }
 }
 
