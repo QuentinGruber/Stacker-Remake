@@ -177,6 +177,7 @@ function LaunchRed(){
             clearInterval(Interval_Wtm);
             clearInterval(Interval_Ud);
             clearInterval(Interval_Tc);
+
             
             if(CanLose && InGame){CheckPlacement();} //you can't loose at first stage
             CanLose = 1;//player can loose after first step
@@ -185,6 +186,8 @@ function LaunchRed(){
             Ypos-=1;//up every movement
 
             PlayTime = (21); //reset playtime
+
+            TimeoutCountdown(); // display playtime updated
 
             if(Ypos<0 && InGame){//Stop the game when we are at the top of the board
                 Win();
