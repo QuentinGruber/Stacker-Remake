@@ -166,11 +166,17 @@ function TimeoutCountdown(){
     }
 
 }
+function Restart(){
+    document.location.reload() // i know ...
+}
 function LaunchRed(){
     var Interval_Wtm = setInterval(function(){WhereToMove();}, Speed);
     var Interval_Ud = setInterval(function(){UpdateDisplay();}, 1);//display updated every 1msec
     var Interval_Tc = setInterval(function(){TimeoutCountdown();}, 1000); // -1 to PlayTime every 1 sec
     document.onkeydown = function(){
+        if(!InGame){
+            Restart();
+        }
         if(AntiSpam == 0){
             //clear interval
             clearInterval(Interval_Wtm);
