@@ -12,6 +12,9 @@ var AntiSpam = 0;
 var CanLose = 0;
 var Score = 0;
 var PlayTime = 20;
+var Interval_Wtm
+var Interval_Ud
+var Interval_Tc 
 tableCreate();
 Board = ArrayCreate(); //init our board
 
@@ -150,6 +153,10 @@ function Loose(){
     alert('you loose!')
     InGame = 0;
     AntiSpam=0;
+    //clear interval
+    clearInterval(Interval_Wtm);
+    clearInterval(Interval_Ud);
+    clearInterval(Interval_Tc);
 }
 function Win(){
     alert('you Win!')
@@ -170,9 +177,9 @@ function Restart(){
     document.location.reload() // i know ...
 }
 function LaunchRed(){
-    var Interval_Wtm = setInterval(function(){WhereToMove();}, Speed);
-    var Interval_Ud = setInterval(function(){UpdateDisplay();}, 1);//display updated every 1msec
-    var Interval_Tc = setInterval(function(){TimeoutCountdown();}, 1000); // -1 to PlayTime every 1 sec
+    Interval_Wtm = setInterval(function(){WhereToMove();}, Speed);
+    Interval_Ud = setInterval(function(){UpdateDisplay();}, 1);//display updated every 1msec
+    Interval_Tc = setInterval(function(){TimeoutCountdown();}, 1000); // -1 to PlayTime every 1 sec
     document.onkeydown = function(){
         if(!InGame){
             Restart();
