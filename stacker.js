@@ -1,10 +1,10 @@
 //init
 var Xpos = -1;
-var Ypos = 9;
+var Ypos = 14;
 var ExtraRed = 2;//extra red cube
 var GoingRight = 1;
 var InGame = 1;//unused
-var LvlLength = 10;//lvl length (no limit) (min 10) automatically adapt
+var LvlLength = 15;//lvl length (no limit) (min 15) automatically adapt
 var Speed = 100; //initial speed
 var ScrollingPoint = 5;// where we start scrolling
 var ScroolCount = 0; //number of times we scrolled 
@@ -23,12 +23,12 @@ function tableCreate(){
         tbl  = document.createElement('table');
     tbl.id = "Board";
     tbl.style.width  = '35vw';
-    tbl.style.height  = '35vw';
+    tbl.style.height  = '45vw';
     tbl.style.marginLeft = '30vw';
-    tbl.style.marginTop = '10vw';
+    tbl.style.marginTop = '3vw';
     tbl.style.border = '1px solid black';
 
-    for(var i = 0; i < 10; i++){ //create row
+    for(var i = 0; i < 15; i++){ //create row
         var tr = tbl.insertRow();
         for(var j = 0; j < 7; j++){//create column
             var td = tr.insertCell();
@@ -44,7 +44,7 @@ function ArrayCreate(){//create array for logic of the game
     var row = [];
     var column = [];
     
-    for (var i = 0; i < 10; i++) {
+    for (var i = 0; i < 15; i++) {
         column = [];
         for (var j = 0; j < 7; j++) {
         column.push(0);
@@ -180,9 +180,9 @@ function LaunchRed(){
             
             if(CanLose && InGame){CheckPlacement();} //you can't loose at first stage
             CanLose = 1;//player can loose after first step
-
              
             Ypos-=1;//up every movement
+
 
             PlayTime = (21); //reset playtime
 
@@ -193,11 +193,11 @@ function LaunchRed(){
             }
             if(InGame){//to stop the game when you lost
                 
-                if(ScroolCount != (LvlLength-10)){///if we need to scrool again
+                if(ScroolCount != (LvlLength-15)){///if we need to scrool again
                     ScroolingUpdate();
                 }
 
-                if(Ypos == 7 && ExtraRed == 2 ||Ypos == 5 && ExtraRed == 1 ){
+                if(Ypos == 11 && ExtraRed == 2 ||Ypos == 7 && ExtraRed == 1 ){
                     ExtraRed -= 1; //when progress in the game even without failure you will lost ExtraRed
                 }
 
