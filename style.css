@@ -11,6 +11,11 @@
     margin-left: 17vw;
     margin-top: 15vw;
 }
+#pressAnyKey{
+    position: fixed;
+    margin-left: 17vw;
+    margin-top: 32vw;
+}
 
 #github{
     position: fixed;
