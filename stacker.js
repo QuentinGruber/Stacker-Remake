@@ -136,10 +136,12 @@ function CheckPlacement(){
         if(Board[Ypos][i] == 1 && Board[Ypos+1][i] != 1){
             var Case = document.getElementById("c"+(i+1)+"r"+(Ypos+1));
             Case.style.backgroundColor="white";
+            Board[Ypos][i] = 0; // change case value in board (needed form lose/win anim)
+            
             ExtraRed -= 1 
             if(ExtraRed<0){
                 Loose();
-                //Case.style.backgroundColor="red";//to let the case we miss on the board
+                Case.style.backgroundColor="red";//to let the case we miss on the board
             }
         }
     }
@@ -153,15 +155,35 @@ function CheckPlacement(){
 function Loose(){
     InGame = 0;
     AntiSpam=0;
+    MakeAllCube("red")
     //clear interval
     clearInterval(Interval_Wtm);
     clearInterval(Interval_Ud);
     clearInterval(Interval_Tc);
 }
 function Win(){
+    MakeAllCube("lime")
     InGame = 0;
     AntiSpam=0;
 }
+
+function MakeAllCube(color){
+    for (var i = 0; i < 15; i++) {
+        for (var j = 0; j < 7; j++) {
+            //Update display
+            if(Board[i][j] == 1){
+                var Case = document.getElementById("c"+(j+1)+"r"+(i+1));
+                Case.style.backgroundColor=color;
+            }
+            else{
+                var Case = document.getElementById("c"+(j+1)+"r"+(i+1));
+                Case.style.backgroundColor="white";
+
+            }
+        }
+    }
+}
+
 function TimeoutCountdown(){
     console.log(PlayTime+"pt");
     PlayTime -= 1;
