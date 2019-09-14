@@ -151,7 +151,6 @@ function CheckPlacement(){
     }
 }
 function Loose(){
-    alert('you loose!')
     InGame = 0;
     AntiSpam=0;
     //clear interval
@@ -160,7 +159,6 @@ function Loose(){
     clearInterval(Interval_Tc);
 }
 function Win(){
-    alert('you Win!')
     InGame = 0;
     AntiSpam=0;
 }
