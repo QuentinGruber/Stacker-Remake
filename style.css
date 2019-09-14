@@ -45,10 +45,13 @@
     font-weight:normal;
     font-style:normal;
     position: fixed;
-    margin-left: 95vw;
+    margin-left: 88vw;
     margin-top: 30vw;
     color:purple;
 
+}
+#timer{
+    font-size: 2vw;
 }
 
 @font-face {

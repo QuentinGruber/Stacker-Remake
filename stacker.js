@@ -161,7 +161,10 @@ function TimeoutCountdown(){
     console.log(PlayTime+"pt");
     PlayTime -= 1;
     var plt = document.getElementById("Playtime");
-    plt.innerHTML = "<p>"+PlayTime+"s"+"</p>";
+    plt.innerHTML = "<p id="+"timer"+">"+"Time left &nbsp&nbsp&nbsp"+PlayTime+"s"+"</p>";
+    if(PlayTime < 10){
+        $("#timer").css("color","red");
+    }
     if(PlayTime == 0){
         Loose();
     }
