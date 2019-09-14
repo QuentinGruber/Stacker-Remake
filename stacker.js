@@ -130,16 +130,30 @@ function WhereToMove(){
         MoveRed(0);
     }
 }
+
+function LastRedBlinking(SaveCase){
+    for (var i = 0; i < (SaveCase.length); i++) {
+        if(SaveCase[i].style.backgroundColor == "red" ){
+            SaveCase[i].style.backgroundColor="white";
+        }
+        else{
+            SaveCase[i].style.backgroundColor="red";
+        }
+    }
+}
+
 function CheckPlacement(){
-    
+    var SaveCase = []
     for (var i = 0; i < 7; i++) {
         if(Board[Ypos][i] == 1 && Board[Ypos+1][i] != 1){
             var Case = document.getElementById("c"+(i+1)+"r"+(Ypos+1));
             Case.style.backgroundColor="white";
+            Board[Ypos][i] = 0; // change case value in board (needed form lose/win anim)
+            SaveCase.push(Case) 
             ExtraRed -= 1 
             if(ExtraRed<0){
                 Loose();
-                //Case.style.backgroundColor="red";//to let the case we miss on the board
+                setInterval(function(){LastRedBlinking(SaveCase);},500);
             }
         }
     }
@@ -151,19 +165,56 @@ function CheckPlacement(){
     }
 }
 function Loose(){
-    alert('you loose!')
     InGame = 0;
     AntiSpam=0;
+    MakeAllCube("red")
     //clear interval
     clearInterval(Interval_Wtm);
     clearInterval(Interval_Ud);
     clearInterval(Interval_Tc);
 }
 function Win(){
-    alert('you Win!')
+    MakeAllCube("lime",Blinking = true)
     InGame = 0;
     AntiSpam=0;
 }
+function VictoryAnim(SaveCase){
+    for (var i = 0; i < (SaveCase.length); i++) {
+        if(SaveCase[i].style.backgroundColor == "lime" ){
+            SaveCase[i].style.backgroundColor="white";
+        }
+        else{
+            SaveCase[i].style.backgroundColor="lime";
+        }
+    }
+}
+
+function MakeAllCube(color,Blinking = false){
+    var SaveCase = [];
+    for (var i = 0; i < 15; i++) {
+        for (var j = 0; j < 7; j++) {
+            //Update display
+            if(Board[i][j] == 1){
+                var Case = document.getElementById("c"+(j+1)+"r"+(i+1));
+                if(Blinking){
+                    SaveCase.push(Case)
+                }
+                else{
+                    Case.style.backgroundColor=color;
+                }
+            }
+            else{
+                var Case = document.getElementById("c"+(j+1)+"r"+(i+1));
+                Case.style.backgroundColor="white";
+
+            }
+        }
+    }
+    if (Blinking){
+    setInterval(function(){VictoryAnim(SaveCase);},200);
+    }
+}
+
 function TimeoutCountdown(){
     console.log(PlayTime+"pt");
     PlayTime -= 1;
