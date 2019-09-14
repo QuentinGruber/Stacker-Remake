@@ -10,6 +10,7 @@ var ScrollingPoint = 5;// where we start scrolling
 var ScroolCount = 0; //number of times we scrolled 
 var AntiSpam = 0;
 var CanLose = 0;
+var Score_enable = false;
 var Score = 0;
 var PlayTime = 20;
 tableCreate();
@@ -26,7 +27,6 @@ function tableCreate(){
     tbl.style.height  = '45vw';
     tbl.style.marginLeft = '30vw';
     tbl.style.marginTop = '3vw';
-    tbl.style.border = '1px solid black';
 
     for(var i = 0; i < 15; i++){ //create row
         var tr = tbl.insertRow();
@@ -69,7 +69,7 @@ function ScroolingUpdate(){
                 //Update display
                 if(Board[i][j] == 1){
                     var Case = document.getElementById("c"+(j+1)+"r"+(i+1));
-                    Case.style.backgroundColor="red";
+                    Case.style.backgroundColor="blue";
                 }
                 else{
                     var Case = document.getElementById("c"+(j+1)+"r"+(i+1));
@@ -88,7 +88,7 @@ function UpdateDisplay(){
     for (var i = 0; i < 7; i++) {
         if(Board[Ypos][i] ==1){
             var Case = document.getElementById("c"+(i+1)+"r"+(Ypos+1));
-            Case.style.backgroundColor="red";
+            Case.style.backgroundColor="blue";
         }
         else{
             var Case = document.getElementById("c"+(i+1)+"r"+(Ypos+1));
@@ -136,15 +136,16 @@ function CheckPlacement(){
             ExtraRed -= 1 
             if(ExtraRed<0){
                 Loose();
-                Case.style.backgroundColor="red";//to let the case we miss on the board
+                //Case.style.backgroundColor="red";//to let the case we miss on the board
             }
         }
     }
-    if(InGame){
+    if(InGame && Score_enable){
         Score+=1;
-    }
+    
     var ScoreDisplay = document.getElementById("score");
     ScoreDisplay.innerHTML="<h1>"+Score+"</h1>";
+    }
 }
 function Loose(){
     alert('you loose!')
