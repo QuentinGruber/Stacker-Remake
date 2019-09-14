@@ -1,13 +1,34 @@
 #Background1{
     position: fixed;
-    height: 1080px;
-    width: 1920px;
-    margin: 0px;
-    padding: 0;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
 
 }
+#Stacker_Title{
+    position: fixed;
+    margin-left: 17vw;
+    margin-top: 15vw;
+}
+#pressAnyKey{
+    position: fixed;
+    margin-left: 17vw;
+    margin-top: 32vw;
+}
 
+#github{
+    position: fixed;
+    height: 15vw;
+    margin-left: 37vw;
+}
 
+#mute{
+    position: fixed;
+    height: 5vw;
+    margin-top: 42vw;
+    margin-left: 92vw;
+}
 
 #Board{
     position: fixed;
@@ -20,9 +41,24 @@
 }
 
 #Playtime{
+    font-family: 'cursed_timer_ulilregular';
+    font-weight:normal;
+    font-style:normal;
     position: fixed;
-    margin-left: 95vw;
+    margin-left: 88vw;
     margin-top: 30vw;
     color:purple;
+
+}
+#timer{
+    font-size: 2vw;
+}
+
+@font-face {
+    font-family: 'cursed_timer_ulilregular';
+    src: url('font/cursedtimerulil-aznm-webfont.woff2') format('woff2'),
+         url('font/cursedtimerulil-aznm-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 
 }
