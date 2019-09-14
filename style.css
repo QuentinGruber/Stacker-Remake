@@ -1,16 +1,21 @@
 #Background1{
     position: fixed;
-  right: 0;
-  bottom: 0;
-  min-width: 100%;
-  min-height: 100%;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
 
+}
+#Stacker_Title{
+    position: fixed;
+    margin-left: 17vw;
+    margin-top: 15vw;
 }
 
 #github{
     position: fixed;
-    height: 5vw;
-    margin-left: 0vw;
+    height: 15vw;
+    margin-left: 37vw;
 }
 
 #mute{

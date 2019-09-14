@@ -2,15 +2,23 @@
     <link href="style.css"rel="stylesheet">
 </head>
 <body>
-    
-    <div id="Background1">
-        <img src="asset/wp1.jpg" alt="background error!">
+    <video autoplay muted loop id="Background1">
+        <source src="RunningBg.mp4" type="video/mp4">
+    </video>
+    <div id="Stacker_Title">
+        <img src="asset/wp1.png" alt="background error!">
     </div>
     
+    <div class ="Social_Icon">
+        <img id="github"src="asset/social_icon/Github.png" alt="Github">
+    </div>
+
     <script>
         document.onkeydown = function(){
             document.location.href = "Stacker.html";
         }
     </script>
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="Ui.js"></script>
 </body>
+
