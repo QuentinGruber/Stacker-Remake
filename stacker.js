@@ -130,18 +130,30 @@ function WhereToMove(){
         MoveRed(0);
     }
 }
+
+function LastRedBlinking(SaveCase){
+    for (var i = 0; i < (SaveCase.length); i++) {
+        if(SaveCase[i].style.backgroundColor == "red" ){
+            SaveCase[i].style.backgroundColor="white";
+        }
+        else{
+            SaveCase[i].style.backgroundColor="red";
+        }
+    }
+}
+
 function CheckPlacement(){
-    
+    var SaveCase = []
     for (var i = 0; i < 7; i++) {
         if(Board[Ypos][i] == 1 && Board[Ypos+1][i] != 1){
             var Case = document.getElementById("c"+(i+1)+"r"+(Ypos+1));
             Case.style.backgroundColor="white";
             Board[Ypos][i] = 0; // change case value in board (needed form lose/win anim)
-            
+            SaveCase.push(Case) 
             ExtraRed -= 1 
             if(ExtraRed<0){
                 Loose();
-                Case.style.backgroundColor="red";//to let the case we miss on the board
+                setInterval(function(){LastRedBlinking(SaveCase);},500);
             }
         }
     }
