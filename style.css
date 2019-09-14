@@ -13,6 +13,13 @@
     margin-left: 0vw;
 }
 
+#mute{
+    position: fixed;
+    height: 5vw;
+    margin-top: 42vw;
+    margin-left: 92vw;
+}
+
 #Board{
     position: fixed;
 }
