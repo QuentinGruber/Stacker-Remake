@@ -174,18 +174,34 @@ function Loose(){
     clearInterval(Interval_Tc);
 }
 function Win(){
-    MakeAllCube("lime")
+    MakeAllCube("lime",Blinking = true)
     InGame = 0;
     AntiSpam=0;
 }
+function VictoryAnim(SaveCase){
+    for (var i = 0; i < (SaveCase.length); i++) {
+        if(SaveCase[i].style.backgroundColor == "lime" ){
+            SaveCase[i].style.backgroundColor="white";
+        }
+        else{
+            SaveCase[i].style.backgroundColor="lime";
+        }
+    }
+}
 
-function MakeAllCube(color){
+function MakeAllCube(color,Blinking = false){
+    var SaveCase = [];
     for (var i = 0; i < 15; i++) {
         for (var j = 0; j < 7; j++) {
             //Update display
             if(Board[i][j] == 1){
                 var Case = document.getElementById("c"+(j+1)+"r"+(i+1));
-                Case.style.backgroundColor=color;
+                if(Blinking){
+                    SaveCase.push(Case)
+                }
+                else{
+                    Case.style.backgroundColor=color;
+                }
             }
             else{
                 var Case = document.getElementById("c"+(j+1)+"r"+(i+1));
@@ -193,6 +209,9 @@ function MakeAllCube(color){
 
             }
         }
+    }
+    if (Blinking){
+    setInterval(function(){VictoryAnim(SaveCase);},200);
     }
 }
 
