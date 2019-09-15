@@ -5,7 +5,7 @@ var ExtraRed = 2;//extra red cube
 var GoingRight = 1;
 var InGame = 1;//unused
 var LvlLength = 15;//lvl length (no limit) (min 15) automatically adapt
-var Speed = 100; //initial speed
+var Speed = 130; //initial speed
 var ScrollingPoint = 5;// where we start scrolling
 var ScroolCount = 0; //number of times we scrolled 
 var AntiSpam = 0;
@@ -268,7 +268,7 @@ function LaunchRed(){
                 if(Ypos == 11 && ExtraRed == 2 ||Ypos == 7 && ExtraRed == 1 ){
                     ExtraRed -= 1; //when progress in the game even without failure you will lost ExtraRed
                 }
-
+                
                 Speed*=0.95; // 5% speed +
                 AntiSpam=1;//turn AntiSpam on after a keydown while still in game
                 LaunchRed();
