@@ -41,6 +41,8 @@ function tableCreate(){
     
     body.appendChild(tbl);
 }
+
+
 function ArrayCreate(){//create array for logic of the game
     var row = [];
     var column = [];
@@ -73,6 +75,7 @@ function UpdateDisplay(){
 
 }
 
+
 function MoveBlue(x){
     if(x==1){//if we go to right
         Board[Ypos][Xpos-ExtraBlue]=0;
@@ -92,6 +95,7 @@ function MoveBlue(x){
 
 }
 
+
 function WhereToMove(){
     if(GoingRight==1){
         MoveBlue(1);
@@ -101,16 +105,6 @@ function WhereToMove(){
     }
 }
 
-function LastRedBlinking(SaveCase){
-    for (var i = 0; i < (SaveCase.length); i++) {
-        if(SaveCase[i].style.backgroundColor == "red" ){
-            SaveCase[i].style.backgroundColor="white";
-        }
-        else{
-            SaveCase[i].style.backgroundColor="red";
-        }
-    }
-}
 
 function CheckPlacement(){
     var SaveCase = []
@@ -134,6 +128,8 @@ function CheckPlacement(){
     ScoreDisplay.innerHTML="<h1>"+Score+"</h1>";
     }
 }
+
+
 function Loose(){
     InGame = 0;
     AntiSpam=0;
@@ -143,11 +139,27 @@ function Loose(){
     clearInterval(Interval_Ud);
     clearInterval(Interval_Tc);
 }
+
+
+function LastRedBlinking(SaveCase){
+    for (var i = 0; i < (SaveCase.length); i++) {
+        if(SaveCase[i].style.backgroundColor == "red" ){
+            SaveCase[i].style.backgroundColor="white";
+        }
+        else{
+            SaveCase[i].style.backgroundColor="red";
+        }
+    }
+}
+
+
 function Win(){
     MakeAllCube("lime",Blinking = true)
     InGame = 0;
     AntiSpam=0;
 }
+
+
 function VictoryAnim(SaveCase){
     for (var i = 0; i < (SaveCase.length); i++) {
         if(SaveCase[i].style.backgroundColor == "lime" ){
@@ -158,6 +170,7 @@ function VictoryAnim(SaveCase){
         }
     }
 }
+
 
 function MakeAllCube(color,Blinking = false){
     var SaveCase = [];
@@ -185,6 +198,7 @@ function MakeAllCube(color,Blinking = false){
     }
 }
 
+
 function TimeoutCountdown(){
     console.log(PlayTime+"pt");
     PlayTime -= 1;
@@ -198,9 +212,13 @@ function TimeoutCountdown(){
     }
 
 }
+
+
 function Restart(){
     document.location.reload() // i know ...
 }
+
+
 function LaunchBlue(){
     Interval_Wtm = setInterval(function(){WhereToMove();}, Speed);
     Interval_Ud = setInterval(function(){UpdateDisplay();}, 1);//display updated every 1msec
@@ -247,6 +265,7 @@ function LaunchBlue(){
         if(InGame){AntiSpam=0;} //only when in game
     }
 }
+
 
 //main
 LaunchBlue();
