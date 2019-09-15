@@ -1,13 +1,11 @@
 //init
 var Xpos = -1;
 var Ypos = 14;
-var ExtraRed = 2;//extra red cube
+var ExtraBlue = 2;//extra Blue cube
 var GoingRight = 1;
 var InGame = 1;//unused
 var LvlLength = 15;//lvl length (no limit) (min 15) automatically adapt
 var Speed = 130; //initial speed
-var ScrollingPoint = 5;// where we start scrolling
-var ScroolCount = 0; //number of times we scrolled 
 var AntiSpam = 0;
 var CanLose = 0;
 var Score_enable = false;
@@ -57,34 +55,6 @@ function ArrayCreate(){//create array for logic of the game
     return row;
 }
 
-function ScroolingUpdate(){
-    
-    if(Ypos==ScrollingPoint){
-        Ypos++;
-        ScroolCount++;
-        //change Board value
-        var BoardSave = Board;
-        for (var i = ScrollingPoint+1; i < 10; i++) {
-            for (var j = 0; j < 7; j++) {
-            
-                Board[i][j]=BoardSave[i-1][j]
-
-                //Update display
-                if(Board[i][j] == 1){
-                    var Case = document.getElementById("c"+(j+1)+"r"+(i+1));
-                    Case.style.backgroundColor="blue";
-                }
-                else{
-                    var Case = document.getElementById("c"+(j+1)+"r"+(i+1));
-                    Case.style.backgroundColor="white";
-
-                }
-            }
-        }
-    }
-    
-
-}
 
 function UpdateDisplay(){
     
@@ -103,31 +73,31 @@ function UpdateDisplay(){
 
 }
 
-function MoveRed(x){
+function MoveBlue(x){
     if(x==1){//if we go to right
-        Board[Ypos][Xpos-ExtraRed]=0;
+        Board[Ypos][Xpos-ExtraBlue]=0;
         Xpos+=1;
         Board[Ypos][Xpos]=1;
-        if(Xpos-ExtraRed>=6){
+        if(Xpos-ExtraBlue>=6){
             GoingRight=0;
         }
 
     }
     else{
-        Board[Ypos][Xpos+ExtraRed]=0;
+        Board[Ypos][Xpos+ExtraBlue]=0;
         Xpos-=1;
         Board[Ypos][Xpos]=1;
-        if(Xpos+ExtraRed<=0){GoingRight=1;}
+        if(Xpos+ExtraBlue<=0){GoingRight=1;}
     }
 
 }
 
 function WhereToMove(){
     if(GoingRight==1){
-        MoveRed(1);
+        MoveBlue(1);
     }
     else{
-        MoveRed(0);
+        MoveBlue(0);
     }
 }
 
@@ -150,8 +120,8 @@ function CheckPlacement(){
             Case.style.backgroundColor="white";
             Board[Ypos][i] = 0; // change case value in board (needed form lose/win anim)
             SaveCase.push(Case) 
-            ExtraRed -= 1 
-            if(ExtraRed<0){
+            ExtraBlue -= 1 
+            if(ExtraBlue<0){
                 Loose();
                 setInterval(function(){LastRedBlinking(SaveCase);},500);
             }
@@ -231,7 +201,7 @@ function TimeoutCountdown(){
 function Restart(){
     document.location.reload() // i know ...
 }
-function LaunchRed(){
+function LaunchBlue(){
     Interval_Wtm = setInterval(function(){WhereToMove();}, Speed);
     Interval_Ud = setInterval(function(){UpdateDisplay();}, 1);//display updated every 1msec
     Interval_Tc = setInterval(function(){TimeoutCountdown();}, 1000); // -1 to PlayTime every 1 sec
@@ -261,17 +231,14 @@ function LaunchRed(){
             }
             if(InGame){//to stop the game when you lost
                 
-                if(ScroolCount != (LvlLength-15)){///if we need to scrool again
-                    ScroolingUpdate();
-                }
 
-                if(Ypos == 11 && ExtraRed == 2 ||Ypos == 7 && ExtraRed == 1 ){
-                    ExtraRed -= 1; //when progress in the game even without failure you will lost ExtraRed
+                if(Ypos == 11 && ExtraBlue == 2 ||Ypos == 7 && ExtraBlue == 1 ){
+                    ExtraBlue -= 1; //when progress in the game even without failure you will lost ExtraBlue
                 }
                 
                 Speed*=0.95; // 5% speed +
                 AntiSpam=1;//turn AntiSpam on after a keydown while still in game
-                LaunchRed();
+                LaunchBlue();
             } 
             
         }
@@ -282,6 +249,6 @@ function LaunchRed(){
 }
 
 //main
-LaunchRed();
+LaunchBlue();
 
 
