@@ -270,4 +270,6 @@ function LaunchBlue(){
 //main
 LaunchBlue();
 
+alert("test");
+
 
