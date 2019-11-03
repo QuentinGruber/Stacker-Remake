@@ -1,57 +1,130 @@
-#Background1{
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
 
-}
-#Stacker_Title{
-    position: fixed;
-    margin-left: 17vw;
-    margin-top: 15vw;
-}
-#pressAnyKey{
-    position: fixed;
-    margin-left: 17vw;
-    margin-top: 32vw;
-}
+/* For Mobile */ 
 
-#github{
-    position: fixed;
-    height: 15vw;
-    margin-left: 37vw;
-}
+@media only screen and (max-width: 500px) {
+    #Board{
+    width:'35vw';
+    height:'45vw';
+    margin-Left:'30vw';
+    margin-Top:'30vw';
+    }
+    #Background1{
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%;
+        min-height: 100%;
+    
+    }
+    #Stacker_Title{
+        position: fixed;
+        margin-left: 17vw;
+        margin-top: 15vw;
+    }
+    #pressAnyKey{
+        position: fixed;
+        margin-left: 17vw;
+        margin-top: 32vw;
+    }
+    
+    #github{
+        position: fixed;
+        height: 15vw;
+        margin-left: 37vw;
+    }
+    
+    #mute{
+        position: fixed;
+        height: 5vw;
+        margin-top: 42vw;
+        margin-left: 92vw;
+    }
+    
+    #Board{
+        position: fixed;
+    }
+    
+    #score{
+        position: fixed;
+        margin-left: 95vw;
+        color: red;
+    }
+    
+    #Playtime{
+        font-family: 'cursed_timer_ulilregular';
+        font-weight:normal;
+        font-style:normal;
+        position: fixed;
+        margin-left: 88vw;
+        margin-top: 30vw;
+        color:purple;
+    
+    }
+    #timer{
+        font-size: 2vw;
+    }
+  }
 
-#mute{
-    position: fixed;
-    height: 5vw;
-    margin-top: 42vw;
-    margin-left: 92vw;
-}
 
-#Board{
-    position: fixed;
-}
+/* For Desktop */ 
 
-#score{
-    position: fixed;
-    margin-left: 95vw;
-    color: red;
-}
 
-#Playtime{
-    font-family: 'cursed_timer_ulilregular';
-    font-weight:normal;
-    font-style:normal;
-    position: fixed;
-    margin-left: 88vw;
-    margin-top: 30vw;
-    color:purple;
-
-}
-#timer{
-    font-size: 2vw;
+@media only screen and (min-width: 500px) {
+    #Background1{
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%;
+        min-height: 100%;
+    
+    }
+    #Stacker_Title{
+        position: fixed;
+        margin-left: 17vw;
+        margin-top: 15vw;
+    }
+    #pressAnyKey{
+        position: fixed;
+        margin-left: 17vw;
+        margin-top: 32vw;
+    }
+    
+    #github{
+        position: fixed;
+        height: 15vw;
+        margin-left: 37vw;
+    }
+    
+    #mute{
+        position: fixed;
+        height: 5vw;
+        margin-top: 42vw;
+        margin-left: 92vw;
+    }
+    
+    #Board{
+        position: fixed;
+    }
+    
+    #score{
+        position: fixed;
+        margin-left: 95vw;
+        color: red;
+    }
+    
+    #Playtime{
+        font-family: 'cursed_timer_ulilregular';
+        font-weight:normal;
+        font-style:normal;
+        position: fixed;
+        margin-left: 88vw;
+        margin-top: 30vw;
+        color:purple;
+    
+    }
+    #timer{
+        font-size: 2vw;
+    }
 }
 
 @font-face {
