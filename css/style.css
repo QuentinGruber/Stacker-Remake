@@ -1,57 +1,150 @@
-#Background1{
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
 
-}
-#Stacker_Title{
-    position: fixed;
-    margin-left: 17vw;
-    margin-top: 15vw;
-}
-#pressAnyKey{
-    position: fixed;
-    margin-left: 17vw;
-    margin-top: 32vw;
-}
+/* For Mobile */ 
 
-#github{
-    position: fixed;
-    height: 15vw;
-    margin-left: 37vw;
-}
+@media only screen and (max-width: 500px) {
+    /* Menu */
 
-#mute{
-    position: fixed;
-    height: 5vw;
-    margin-top: 42vw;
-    margin-left: 92vw;
-}
+    #Stacker_Title{
+        position: fixed;
+        margin-left: 10vw;
+        margin-top: 45vw;
+        width: 250px;
+        height: 100px;
+    }
 
-#Board{
-    position: fixed;
-}
+    #pressAnyKey{
+        position: fixed;
+        margin-left: 10vw;
+        margin-top: 80vw;
+        width: 250px;
+        height: 100px;
+    }
+    
+    #github{
+        position: fixed;
+        height: 15vw;
+        margin-left: 25vw;
+        width: 150px;
+        height: 80px;
+    }
 
-#score{
-    position: fixed;
-    margin-left: 95vw;
-    color: red;
-}
+    /* Game */
 
-#Playtime{
-    font-family: 'cursed_timer_ulilregular';
-    font-weight:normal;
-    font-style:normal;
-    position: fixed;
-    margin-left: 88vw;
-    margin-top: 30vw;
-    color:purple;
+    #Background1{
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%;
+        min-height: 100%;
+    
+    }
 
-}
-#timer{
-    font-size: 2vw;
+    #Board{
+        position: fixed;
+        width: 75vw;
+        height: 100vw;
+        margin-left: 12vw;
+        margin-top: 25vw;
+    }
+
+    #mute{
+        position: fixed;
+        height: 10vw;
+        width: 10vw;
+        margin-top: 5vw;
+        margin-left: 0vw;
+    }
+    }
+    
+    #score{
+        position: fixed;
+        margin-left: 95vw;
+        color: red;
+    }
+    
+    #Playtime{
+        font-family: 'cursed_timer_ulilregular';
+        font-weight:normal;
+        font-style:normal;
+        position: fixed;
+        margin-left: 32vw;
+        margin-top: 10vw;
+        color:purple;
+    }
+
+    #timer{
+        font-size: 5vw;
+    }
+  }
+
+
+/* For Desktop */ 
+
+
+@media only screen and (min-width: 500px) {
+    /* Menu */
+
+    #Stacker_Title{
+        position: fixed;
+        margin-left: 17vw;
+        margin-top: 15vw;
+    }
+    #pressAnyKey{
+        position: fixed;
+        margin-left: 17vw;
+        margin-top: 32vw;
+    }
+    
+    #github{
+        position: fixed;
+        height: 15vw;
+        margin-left: 37vw;
+    }
+    /* Game */
+
+    #Background1{
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%;
+        min-height: 100%;
+    
+    }
+
+    #mute{
+        position: fixed;
+        height: 5vw;
+        margin-top: 42vw;
+        margin-left: 92vw;
+    }
+    
+    #Board{
+        position: fixed;
+        width: 35vw;
+        height: 45vw;
+        margin-left: 30vw;
+        margin-top: 3vw;
+    }
+    
+    #score{
+        position: fixed;
+        margin-left: 95vw;
+        color: red;
+    }
+    
+    #Playtime{
+        font-family: 'cursed_timer_ulilregular';
+        font-weight:normal;
+        font-style:normal;
+        position: fixed;
+        margin-left: 88vw;
+        margin-top: 30vw;
+        color:purple;
+    
+    }
+    #timer{
+        font-size: 2vw;
+    }
 }
 
 @font-face {

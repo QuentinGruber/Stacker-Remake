@@ -23,11 +23,8 @@ Board = ArrayCreate(); //init our board
 function tableCreate(){
     var body = document.body,
         tbl  = document.createElement('table');
+    tbl.onclick = function() { Tap() }
     tbl.id = "Board";
-    tbl.style.width  = '35vw';
-    tbl.style.height  = '45vw';
-    tbl.style.marginLeft = '30vw';
-    tbl.style.marginTop = '3vw';
 
     for(var i = 0; i < 15; i++){ //create row
         var tr = tbl.insertRow();
@@ -218,52 +215,60 @@ function Restart(){
     document.location.reload() // i know ...
 }
 
+function StopBlocks(KeyBoardAction = false){
+    if(!InGame){
+        Restart();
+    }
+    if(AntiSpam == 0){
+        //clear interval
+        clearInterval(Interval_Wtm);
+        clearInterval(Interval_Ud);
+        clearInterval(Interval_Tc);
+
+        
+        if(CanLose && InGame){CheckPlacement();} //you can't loose at first stage
+        CanLose = 1;//player can loose after first step
+         
+        Ypos-=1;//up every movement
+
+
+        PlayTime = (21); //reset playtime
+
+        TimeoutCountdown(); // display playtime updated
+
+        if(Ypos<0 && InGame){//Stop the game when we are at the top of the board
+            Win();
+        }
+        if(InGame){//to stop the game when you lost
+            
+
+            if(Ypos == 11 && ExtraBlue == 2 ||Ypos == 7 && ExtraBlue == 1 ){
+                ExtraBlue -= 1; //when progress in the game even without failure you will lost ExtraBlue
+            }
+            
+            Speed*=0.95; // 5% speed +
+            if (KeyBoardAction){AntiSpam=1;}//turn AntiSpam on after a keydown while still in game
+            LaunchBlue();
+        } 
+        
+    }
+}
 
 function LaunchBlue(){
     Interval_Wtm = setInterval(function(){WhereToMove();}, Speed);
     Interval_Ud = setInterval(function(){UpdateDisplay();}, 1);//display updated every 1msec
     Interval_Tc = setInterval(function(){TimeoutCountdown();}, 1000); // -1 to PlayTime every 1 sec
+    // keyword
     document.onkeydown = function(){
-        if(!InGame){
-            Restart();
-        }
-        if(AntiSpam == 0){
-            //clear interval
-            clearInterval(Interval_Wtm);
-            clearInterval(Interval_Ud);
-            clearInterval(Interval_Tc);
-
-            
-            if(CanLose && InGame){CheckPlacement();} //you can't loose at first stage
-            CanLose = 1;//player can loose after first step
-             
-            Ypos-=1;//up every movement
-
-
-            PlayTime = (21); //reset playtime
-
-            TimeoutCountdown(); // display playtime updated
-
-            if(Ypos<0 && InGame){//Stop the game when we are at the top of the board
-                Win();
-            }
-            if(InGame){//to stop the game when you lost
-                
-
-                if(Ypos == 11 && ExtraBlue == 2 ||Ypos == 7 && ExtraBlue == 1 ){
-                    ExtraBlue -= 1; //when progress in the game even without failure you will lost ExtraBlue
-                }
-                
-                Speed*=0.95; // 5% speed +
-                AntiSpam=1;//turn AntiSpam on after a keydown while still in game
-                LaunchBlue();
-            } 
-            
-        }
+        StopBlocks(KeyBoardAction = true)
     }
     document.onkeyup = function(){//turn off AntiSpam when the key is up
         if(InGame){AntiSpam=0;} //only when in game
     }
+}
+
+function Tap(){
+    StopBlocks()
 }
 
 
