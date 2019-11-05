@@ -18,19 +18,26 @@
     }
     #Stacker_Title{
         position: fixed;
-        margin-left: 17vw;
-        margin-top: 15vw;
+        margin-left: 10vw;
+        margin-top: 45vw;
+        width: 250px;
+        height: 100px;
     }
     #pressAnyKey{
         position: fixed;
-        margin-left: 17vw;
-        margin-top: 32vw;
+        margin-left: 10vw;
+        margin-top: 80vw;
+        width: 250px;
+        height: 100px;
     }
     
     #github{
         position: fixed;
         height: 15vw;
-        margin-left: 37vw;
+        margin-left: 25vw;
+        width: 150px;
+        height: 80px;
+
     }
     
     #mute{
