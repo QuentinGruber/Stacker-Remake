@@ -2,20 +2,8 @@
 /* For Mobile */ 
 
 @media only screen and (max-width: 500px) {
-    #Board{
-    width:'35vw';
-    height:'45vw';
-    margin-Left:'30vw';
-    margin-Top:'30vw';
-    }
-    #Background1{
-        position: fixed;
-        right: 0;
-        bottom: 0;
-        min-width: 100%;
-        min-height: 100%;
-    
-    }
+    /* Menu */
+
     #Stacker_Title{
         position: fixed;
         margin-left: 10vw;
@@ -23,6 +11,7 @@
         width: 250px;
         height: 100px;
     }
+
     #pressAnyKey{
         position: fixed;
         margin-left: 10vw;
@@ -37,18 +26,28 @@
         margin-left: 25vw;
         width: 150px;
         height: 80px;
+    }
 
+    /* Game */
+
+    #Background1{
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%;
+        min-height: 100%;
+    
     }
     
+    #Board{
+        position: fixed;
+    }
+
     #mute{
         position: fixed;
         height: 5vw;
         margin-top: 42vw;
         margin-left: 92vw;
-    }
-    
-    #Board{
-        position: fixed;
     }
     
     #score{
@@ -77,14 +76,8 @@
 
 
 @media only screen and (min-width: 500px) {
-    #Background1{
-        position: fixed;
-        right: 0;
-        bottom: 0;
-        min-width: 100%;
-        min-height: 100%;
-    
-    }
+    /* Menu */
+
     #Stacker_Title{
         position: fixed;
         margin-left: 17vw;
@@ -101,7 +94,17 @@
         height: 15vw;
         margin-left: 37vw;
     }
+    /* Game */
+
+    #Background1{
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%;
+        min-height: 100%;
     
+    }
+
     #mute{
         position: fixed;
         height: 5vw;
