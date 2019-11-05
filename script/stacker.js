@@ -25,10 +25,6 @@ function tableCreate(){
         tbl  = document.createElement('table');
     tbl.onclick = function() { Tap() }
     tbl.id = "Board";
-    tbl.style.width  = '35vw';
-    tbl.style.height  = '45vw';
-    tbl.style.marginLeft = '30vw';
-    tbl.style.marginTop = '3vw';
 
     for(var i = 0; i < 15; i++){ //create row
         var tr = tbl.insertRow();
