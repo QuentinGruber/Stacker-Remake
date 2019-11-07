@@ -1,7 +1,7 @@
 
 /* For Mobile */ 
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 375px) {
     /* Menu */
 
     #Stacker_Title{
@@ -81,7 +81,7 @@
 /* For Desktop */ 
 
 
-@media only screen and (min-width: 500px) {
+@media only screen and (min-width: 375px) {
     /* Menu */
 
     #Stacker_Title{
