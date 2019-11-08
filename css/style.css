@@ -1,31 +1,34 @@
 
 /* For Mobile */ 
 
-@media only screen and (max-width: 375px) {
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 667px) 
+and (orientation : portrait) {
     /* Menu */
 
     #Stacker_Title{
         position: fixed;
-        margin-left: 10vw;
+        margin-left: 15vw;
         margin-top: 45vw;
-        width: 250px;
-        height: 100px;
+        width: 66.66666666666666vw;
+        height: 26.666666666666668vw;
     }
 
     #pressAnyKey{
         position: fixed;
-        margin-left: 10vw;
+        margin-left: 15vw;
         margin-top: 80vw;
-        width: 250px;
-        height: 100px;
+        width: 66.66666666666666vw;
+        height: 26.666666666666668vw;
     }
     
     #github{
         position: fixed;
         height: 15vw;
         margin-left: 25vw;
-        width: 150px;
-        height: 80px;
+        width: 40vw;
+        height: 21.333333333333336vw;
     }
 
     /* Game */
@@ -81,7 +84,7 @@
 /* For Desktop */ 
 
 
-@media only screen and (min-width: 375px) {
+@media only screen and (min-width: 1224px) {
     /* Menu */
 
     #Stacker_Title{
