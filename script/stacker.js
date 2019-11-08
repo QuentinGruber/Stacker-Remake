@@ -196,7 +196,6 @@ function MakeAllCube(color,Blinking = false){
 
 
 function TimeoutCountdown(){
-    console.log(PlayTime+"pt");
     PlayTime -= 1;
     var plt = document.getElementById("Playtime");
     plt.innerHTML = "<p id="+"timer"+">"+"Time left &nbsp&nbsp&nbsp"+PlayTime+"s"+"</p>";
