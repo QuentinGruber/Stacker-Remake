@@ -13,7 +13,7 @@ var Score = 0;
 var PlayTime = 20;
 var Interval_Wtm
 var Interval_Ud
-var Interval_Tc 
+var Interval_Tc
 tableCreate();
 Board = ArrayCreate(); //init our board
 
@@ -23,7 +23,6 @@ Board = ArrayCreate(); //init our board
 function tableCreate(){
     var body = document.body,
         tbl  = document.createElement('table');
-    tbl.onclick = function() { Tap() }
     tbl.id = "Board";
 
     for(var i = 0; i < 15; i++){ //create row
@@ -35,7 +34,7 @@ function tableCreate(){
             td.id = "c"+(j+1)+"r"+(i+1);
             }
         }
-    
+
     body.appendChild(tbl);
 }
 
@@ -43,7 +42,7 @@ function tableCreate(){
 function ArrayCreate(){//create array for logic of the game
     var row = [];
     var column = [];
-    
+
     for (var i = 0; i < 15; i++) {
         column = [];
         for (var j = 0; j < 7; j++) {
@@ -56,7 +55,7 @@ function ArrayCreate(){//create array for logic of the game
 
 
 function UpdateDisplay(){
-    
+
     for (var i = 0; i < 7; i++) {
         if(Board[Ypos][i] ==1){
             var Case = document.getElementById("c"+(i+1)+"r"+(Ypos+1));
@@ -110,8 +109,8 @@ function CheckPlacement(){
             var Case = document.getElementById("c"+(i+1)+"r"+(Ypos+1));
             Case.style.backgroundColor="white";
             Board[Ypos][i] = 0; // change case value in board (needed form lose/win anim)
-            SaveCase.push(Case) 
-            ExtraBlue -= 1 
+            SaveCase.push(Case)
+            ExtraBlue -= 1
             if(ExtraBlue<0){
                 Loose();
                 setInterval(function(){LastRedBlinking(SaveCase);},500);
@@ -120,7 +119,7 @@ function CheckPlacement(){
     }
     if(InGame && Score_enable){
         Score+=1;
-    
+
     var ScoreDisplay = document.getElementById("score");
     ScoreDisplay.innerHTML="<h1>"+Score+"</h1>";
     }
@@ -225,10 +224,10 @@ function StopBlocks(KeyBoardAction = false){
         clearInterval(Interval_Ud);
         clearInterval(Interval_Tc);
 
-        
+
         if(CanLose && InGame){CheckPlacement();} //you can't loose at first stage
         CanLose = 1;//player can loose after first step
-         
+
         Ypos-=1;//up every movement
 
 
@@ -240,17 +239,17 @@ function StopBlocks(KeyBoardAction = false){
             Win();
         }
         if(InGame){//to stop the game when you lost
-            
+
 
             if(Ypos == 11 && ExtraBlue == 2 ||Ypos == 7 && ExtraBlue == 1 ){
                 ExtraBlue -= 1; //when progress in the game even without failure you will lost ExtraBlue
             }
-            
+
             Speed*=0.95; // 5% speed +
             if (KeyBoardAction){AntiSpam=1;}//turn AntiSpam on after a keydown while still in game
             LaunchBlue();
-        } 
-        
+        }
+
     }
 }
 
@@ -265,12 +264,11 @@ function LaunchBlue(){
     document.onkeyup = function(){//turn off AntiSpam when the key is up
         if(InGame){AntiSpam=0;} //only when in game
     }
+    // mouse/tap
+    document.onmousedown = function(){
+        StopBlocks()
+    }
 }
-
-function Tap(){
-    StopBlocks()
-}
-
 
 //main
 LaunchBlue();
