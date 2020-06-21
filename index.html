@@ -2,30 +2,21 @@
     <link href="css/style.css" rel="stylesheet">
 </head>
 
-<body onclick="Tap()">
+<body>
 
-    <video autoplay muted loop id="Background1">
+    <video OnClick="document.location.href ='Stacker.html'" autoplay muted loop id="Background1">
         <source src="asset/Loop_Background/RunningBg.mp4" type="video/mp4">
     </video>
 
-    <img id="Stacker_Title" src="asset/menu/wp1.png" alt="background error!">
+    <img OnClick="document.location.href ='Stacker.html'" id="Stacker_Title" src="asset/menu/wp1.png"
+        alt="background error!">
 
     <div class="Social_Icon">
         <img id="github" src="asset/social_icon/Github.png" alt="Github">
     </div>
 
-    <img id="pressAnyKey" src="asset/menu/pressAnyKey.png" alt="PressAnyKey">
-
-
-    <script>
-        document.onkeydown = function () {
-            document.location.href = "Stacker.html";
-        }
-
-        function Tap() {
-            document.location.href = "Stacker.html";
-        }
-    </script>
+    <img id="pressAnyKey" OnClick="document.location.href ='Stacker.html'" src="asset/menu/pressAnyKey.png"
+        alt="PressAnyKey">
 
     <script src="lib/Jquery.js"></script>
     <script src="script/Ui.js"></script>
